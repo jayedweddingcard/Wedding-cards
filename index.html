@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic 3D Door Wedding Invitation</title>
+    <title>শুভ বিবাহ আমন্ত্রণ পত্র | Royal Islamic 3D Wedding Invitation</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -11,221 +11,255 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Aref+Ruqaa:wght@700&family=Great+Vibes&family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Hind+Siliguri:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- QRCode.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         body { 
-            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
+            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif; 
             scroll-behavior: smooth; 
             overflow-x: hidden; 
-            background-color: #fcf9f5;
+            background-color: #fbf8f2;
         }
         .font-arabic { font-family: 'Amiri', serif; }
-        .font-arabic-title { font-family: 'Aref Ruqaa', serif; }
+        .font-royal { font-family: 'Cinzel Decorative', cursive; }
         .font-wedding { font-family: 'Great Vibes', cursive; }
 
-        /* 3D Door Perspective Container */
+        /* 3D Gate Perspective */
         .door-perspective {
-            perspective: 1200px;
+            perspective: 1400px;
         }
-        .door-panel-left {
+        .door-leaf-left {
             transform-origin: left center;
-            transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 2.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .door-panel-right {
+        .door-leaf-right {
             transform-origin: right center;
-            transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 2.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .door-open-left {
-            transform: rotateY(-105deg);
+            transform: rotateY(-110deg);
         }
         .door-open-right {
-            transform: rotateY(105deg);
+            transform: rotateY(110deg);
         }
 
-        /* Glassmorphism */
+        /* Glassmorphism Effect */
         .glass {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.78);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.25);
         }
         .dark .glass {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(28, 25, 23, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.15);
         }
 
-        /* Falling Flower Petals */
-        .petal {
+        /* রাজকীয় খিলান ও দরজার ফ্রেম */
+        .royal-arch {
+            background: radial-gradient(circle at top, #d4af37 0%, #854d0e 80%, #3f2208 100%);
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+        }
+        .door-wood-pattern {
+            background: radial-gradient(circle, rgba(133, 77, 14, 0.4) 0%, rgba(63, 34, 8, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=500&q=80') center/cover;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        /* উড়ন্ত পায়রা (Flying Birds Animation) */
+        .bird {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 60;
+            transition: all 2.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* ঝরে পড়া ফুলের পাপড়ি (Falling Petals) */
+        .falling-petal {
             position: fixed;
-            background: radial-gradient(circle, #ffccd5 0%, #ffb7b2 100%);
+            background: radial-gradient(circle, #ffccd5 0%, #fecdd3 80%, #fb7185 100%);
             border-radius: 150% 0 150% 150%;
             pointer-events: none;
             opacity: 0.85;
-            animation: fallPetal linear infinite;
-            z-index: 60;
+            animation: petalDrift linear infinite;
+            z-index: 70;
         }
-        @keyframes fallPetal {
+        @keyframes petalDrift {
             0% { top: -10%; left: var(--left-start); transform: rotate(0deg) scale(0.8); }
             100% { top: 110%; left: var(--left-end); transform: rotate(360deg) scale(1.1); }
-        }
-
-        /* Flying Doves Animation */
-        .dove {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 55;
-            transition: all 3s ease-out;
         }
     </style>
 </head>
 <body class="text-stone-800 dark:text-stone-100 transition-colors duration-300">
 
-    <!-- অডিও এলিমেন্ট -->
-    <audio id="bg-music" loop></audio>
+    <!-- ব্যাকগ্রাউন্ড নাশিদ / মিউজিক প্লেয়ার -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73539.mp3?filename=islamic-background-music-111100.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- =========================================================================
-         [১] জেনারেটর / এডিটর প্যানেল (মেইন পেজ: শুধু লিংক তৈরি করতে ব্যবহৃত হবে)
+         [১] মূল জেনারেটর / ইনপুট প্যানেল (শুধুমাত্র এডমিন বা লিংক তৈরির জন্য)
     ========================================================================== -->
-    <div id="admin-panel" class="max-w-xl mx-auto my-10 p-6 md:p-8 bg-white dark:bg-stone-900 rounded-3xl shadow-2xl border border-amber-500/20">
-        <div class="text-center mb-8">
-            <span class="text-4xl text-amber-500">🚪</span>
-            <h2 class="text-2xl font-bold mt-2 text-amber-600 dark:text-amber-400">3D Door Wedding Invitation Editor</h2>
-            <p class="text-xs text-stone-500 mt-1">সব তথ্য ইনপুট করে ভিডিওর মতো ৩ডি দরজা খোলার কার্ড লিংক তৈরি করুন</p>
+    <div id="admin-panel" class="max-w-2xl mx-auto my-8 p-6 md:p-8 bg-white dark:bg-stone-900 rounded-3xl shadow-2xl border border-amber-500/30">
+        <div class="text-center mb-6">
+            <span class="text-4xl text-amber-500">🕌</span>
+            <h2 class="text-2xl font-bold mt-2 text-amber-700 dark:text-amber-400">রয়েল ৩ডি ডোর ইনভিটেশন কার্ড জেনারেটর</h2>
+            <p class="text-xs text-stone-500 mt-1">সব তথ্য পূরণ করে মেহমানদের জন্য চমৎকার রাজকীয় কার্ডের লিংক তৈরি করুন</p>
         </div>
         
         <form id="creator-form" class="space-y-4 text-xs font-semibold text-stone-700 dark:text-stone-300">
-            <div class="grid grid-cols-2 gap-3">
+            <!-- বর ও কনের নাম -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                     <label class="block mb-1">🤵 বরের নাম</label>
-                    <input type="text" id="inp-groom" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="মোহাম্মদ">
+                    <input type="text" id="inp-groom" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="ইমদাদুল হাসান জায়েদ">
                 </div>
                 <div>
                     <label class="block mb-1">👰 কনের নাম</label>
-                    <input type="text" id="inp-bride" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="রিফ">
+                    <input type="text" id="inp-bride" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="তাশফিয়া">
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
+            <!-- বর ও কনের পিতা-মাতার নাম -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                    <label class="block mb-1">👨 বরের পিতা ও মাতা</label>
-                    <input type="text" id="inp-gparents" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="শেখ করীম জাদ ও মাতা হুদা">
+                    <label class="block mb-1">👨‍👩‍👦 বরের পিতা ও মাতা</label>
+                    <input type="text" id="inp-gparents" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="পিতা: মাওলানা আলী আহমদ, মাতা: মাহমুদা বেগম">
                 </div>
                 <div>
-                    <label class="block mb-1">👩 কনের পিতা ও মাতা</label>
-                    <input type="text" id="inp-bparents" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="কারিমা সৈয়দ সামি হাসান ও মাতা রানা">
+                    <label class="block mb-1">👨‍👩‍👧 কনের পিতা ও মাতা</label>
+                    <input type="text" id="inp-bparents" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="পিতা: মোহাম্মদ আলী, মাতা: ফাতেমা বেগম">
                 </div>
             </div>
 
-            <div>
-                <label class="block mb-1">📆 বিয়ের তারিখ ও সময়</label>
-                <input type="datetime-local" id="inp-datetime" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800 text-stone-900 dark:text-white">
+            <!-- দিন ও তারিখ সংক্রান্ত তথ্য -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                    <label class="block mb-1">📆 শুভ বিবাহ / আকদ (তারিখ ও সময়)</label>
+                    <input type="datetime-local" id="inp-nikah-dt" required class="w-full p-2.5 border rounded-xl dark:bg-stone-800 text-stone-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block mb-1">🍲 প্রীতিভোজ ও ওলিমা (তারিখ ও সময় - ঐচ্ছিক)</label>
+                    <input type="datetime-local" id="inp-walima-dt" class="w-full p-2.5 border rounded-xl dark:bg-stone-800 text-stone-900 dark:text-white">
+                </div>
             </div>
 
-            <div>
-                <label class="block mb-1">📍 ভেন্যুর নাম ও লোকেশন</label>
-                <input type="text" id="inp-venue" class="w-full p-2.5 border rounded-xl dark:bg-stone-800 mb-2" placeholder="গ্র্যান্ড প্যালেস বলরুম">
-                <input type="url" id="inp-map" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="গুগল ম্যাপ লিংক: https://maps.google.com/...">
+            <!-- অনুষ্ঠানস্থল ও গুগল ম্যাপ লোকেশন -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                    <label class="block mb-1">📍 ভেন্যু / অনুষ্ঠানস্থলের নাম ও ঠিকানা</label>
+                    <input type="text" id="inp-venue" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="গ্র্যান্ড প্যালেস কনভেনশন হল, আশরাফপুর রোড">
+                </div>
+                <div>
+                    <label class="block mb-1">🗺️ গুগল ম্যাপ লিংক</label>
+                    <input type="url" id="inp-map" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="https://maps.google.com/...">
+                </div>
             </div>
 
-            <div>
-                <label class="block mb-1">💌 মেহমানদের উদ্দেশ্যে বিশেষ বার্তা</label>
-                <textarea id="inp-msg" rows="2" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="আমাদের জীবনের এই আনন্দময় দিনে আপনাদের উপস্থিতি আমাদের হৃদয়কে পূর্ণ করবে।"></textarea>
+            <!-- ব্যাকগ্রাউন্ড ছবি ও মিউজিক -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                    <label class="block mb-1">🖼️ কার্ডের ব্যাকগ্রাউন্ড ছবি (URL)</label>
+                    <input type="url" id="inp-bg" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="https://images.unsplash.com/photo-1519741497674-611481863552">
+                </div>
+                <div>
+                    <label class="block mb-1">🎵 ব্যাকগ্রাউন্ড নাশিদ / মিউজিক লিংক (MP3 URL)</label>
+                    <input type="url" id="inp-music" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="https://example.com/audio.mp3">
+                </div>
             </div>
 
-            <div>
-                <label class="block mb-1">⚠️ বিশেষ নির্দেশনা (যেমন: বাচ্চাদের ক্ষেত্রে)</label>
-                <input type="text" id="inp-note" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="অনুগ্রহ করে অনুষ্ঠান শুরুর ৩০ মিনিট পূর্বে আসন গ্রহণ করুন">
-            </div>
-
-            <div>
-                <label class="block mb-1">🎵 ব্যাকগ্রাউন্ড মিউজিক (Direct MP3 URL)</label>
-                <input type="url" id="inp-music" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
+            <!-- আমন্ত্রিত মেহমানের নাম ও বিশেষ বার্তা -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                     <label class="block mb-1">👤 আমন্ত্রিত অতিথির নাম (ঐচ্ছিক)</label>
                     <input type="text" id="inp-guest" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="জনাব কামাল উদ্দিন">
                 </div>
                 <div>
-                    <label class="block mb-1">🌐 ভাষা</label>
-                    <select id="inp-lang" class="w-full p-2.5 border rounded-xl dark:bg-stone-800 text-stone-900 dark:text-white">
-                        <option value="bn">Bengali (বাংলা)</option>
-                        <option value="ar">Arabic (العربية)</option>
-                        <option value="en">English</option>
-                    </select>
+                    <label class="block mb-1">📞 যোগাযোগ নম্বর</label>
+                    <input type="text" id="inp-phone" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="+966500000000">
                 </div>
             </div>
 
-            <button type="button" onclick="buildWeddingLink()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold rounded-xl shadow-lg transition">
-                🚀 তৈরি করুন ৩ডি ডোর কার্ড লিংক
+            <div>
+                <label class="block mb-1">💌 মেহমানদের উদ্দেশ্যে বিশেষ বার্তা</label>
+                <textarea id="inp-msg" rows="2" class="w-full p-2.5 border rounded-xl dark:bg-stone-800" placeholder="আমাদের নতুন জীবনের শুভযাত্রায় আপনার উপস্থিতি ও মনভরা দোয়া একান্ত কাম্য।"></textarea>
+            </div>
+
+            <button type="button" onclick="generateInvitationURL()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 font-bold rounded-xl shadow-lg transition">
+                🚀 তৈরি করুন রাজকীয় ৩ডি কার্ড লিংক
             </button>
         </form>
 
-        <div id="link-result-box" class="mt-6 p-4 bg-amber-50 dark:bg-stone-800 rounded-2xl border border-amber-500/30 hidden space-y-3">
+        <!-- লিংক আউটপুট এরিয়া -->
+        <div id="output-box" class="mt-6 p-4 bg-amber-50 dark:bg-stone-800 rounded-2xl border border-amber-500/30 hidden space-y-3">
             <p class="text-xs font-bold text-amber-700 dark:text-amber-400">🎉 আপনার ইনভিটেশন কার্ড লিংক তৈরি সম্পন্ন!</p>
-            <input type="text" id="generated-url" readonly class="w-full p-2 text-xs border rounded-lg bg-white dark:bg-stone-800">
-            <div class="flex gap-2">
-                <button onclick="copyGeneratedLink()" class="flex-1 py-2 bg-stone-800 text-white text-xs font-bold rounded-lg hover:bg-stone-700">📋 লিংক কপি</button>
-                <button onclick="openGeneratedLink()" class="flex-1 py-2 bg-amber-500 text-stone-950 text-xs font-bold rounded-lg hover:bg-amber-600">👁️ কার্ডটি দেখুন</button>
+            <input type="text" id="final-url-field" readonly class="w-full p-2.5 text-xs border rounded-lg bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300">
+            <div class="flex flex-wrap gap-2">
+                <button onclick="copyGeneratedUrl()" class="flex-1 py-2 px-3 bg-stone-800 text-white text-xs font-bold rounded-lg hover:bg-stone-700 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-copy"></i> কপি করুন
+                </button>
+                <button onclick="shareViaWhatsApp()" class="flex-1 py-2 px-3 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 flex items-center justify-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে পাঠান
+                </button>
+                <button onclick="openCurrentUrl()" class="flex-1 py-2 px-3 bg-amber-500 text-stone-950 text-xs font-bold rounded-lg hover:bg-amber-600 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-eye"></i> কার্ডটি দেখুন
+                </button>
             </div>
         </div>
     </div>
 
 
     <!-- =========================================================================
-         [২] ভিডিওর মতো ৩ডি দরজা খোলার স্ক্রিন (৩D Door Opening Welcome Screen)
+         [২] ভিডিওর মতো রাজকীয় কারুকার্যময় ৩ডি ডোর ওপেনিং স্টেজ
     ========================================================================== -->
     <div id="door-stage" class="fixed inset-0 z-50 overflow-hidden flex flex-col items-center justify-center bg-stone-950 hidden">
         
-        <!-- দরজার পিছনের বাগান / ব্যাকগ্রাউন্ড সিন -->
-        <div id="door-inside-scene" class="absolute inset-0 bg-cover bg-center opacity-90 transition-transform duration-1000 scale-105" 
-             style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">
-            <!-- পিছনের আলোর গ্লো -->
-            <div class="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-amber-100/30"></div>
+        <!-- দরজার পিছনের দৃশ্য (জান্নাতী বাগান ও আলোর ফোয়ারা)[span_1](start_span)[span_1](end_span) -->
+        <div id="inside-garden-scene" class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105" 
+             style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-amber-100/20"></div>
         </div>
 
-        <!-- উড়ন্ত কবুতর -->
-        <img id="dove-left" src="https://cdn-icons-png.flaticon.com/512/3233/3233497.png" class="dove left-1/3 top-1/2 -rotate-12" alt="dove">
-        <img id="dove-right" src="https://cdn-icons-png.flaticon.com/512/3233/3233497.png" class="dove right-1/3 top-1/2 rotate-12 scale-x-[-1]" alt="dove">
+        <!-- উড়ন্ত সাদা পায়রাদ্বয়[span_2](start_span)[span_2](end_span) -->
+        <img id="bird-left" src="https://cdn-icons-png.flaticon.com/512/3233/3233497.png" class="bird left-1/2 top-1/2 -rotate-12" alt="pigeon">
+        <img id="bird-right" src="https://cdn-icons-png.flaticon.com/512/3233/3233497.png" class="bird left-1/2 top-1/2 rotate-12 scale-x-[-1]" alt="pigeon">
 
-        <!-- ৩ডি দরজা ফ্রেম -->
-        <div class="door-perspective relative w-[88vw] max-w-[420px] h-[85vh] rounded-[48px] overflow-hidden shadow-2xl border-4 border-amber-900/40">
+        <!-- ৩ডি রাজকীয় দরজা ফ্রেম[span_3](start_span)[span_3](end_span) -->
+        <div class="door-perspective relative w-[90vw] max-w-[420px] h-[84vh] rounded-[48px] overflow-hidden shadow-2xl border-[6px] border-amber-900/60">
             
-            <!-- দরজার আর্চ ফ্রেম ডেকোরেশন -->
-            <div class="absolute inset-0 pointer-events-none z-30 border-[12px] border-amber-950/20 rounded-[44px]"></div>
-
-            <!-- বাম পাল্লা -->
-            <div id="left-door" class="door-panel-left absolute left-0 top-0 w-1/2 h-full z-20 shadow-2xl" 
-                 style="background: linear-gradient(rgba(45,24,16,0.35), rgba(45,24,16,0.45)), url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=400&q=80') center/cover;">
-                <div class="h-full w-full border-r border-amber-950/60 flex items-center justify-end pr-2">
-                    <div class="w-4 h-16 rounded-full bg-amber-600/60 border border-amber-300 shadow-md"></div>
-                </div>
+            <!-- দরজার চারপাশের ফুলের মালা ও ইসলামিক খিলানের নকশা -->
+            <div class="royal-arch absolute inset-x-0 top-0 h-28 z-30 flex flex-col items-center justify-center border-b-4 border-amber-400/50">
+                <span class="text-2xl">🌸🌿🌺🌿🌸</span>
+                <p class="font-arabic text-xl text-amber-200 mt-1">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
             </div>
 
-            <!-- ডান পাল্লা -->
-            <div id="right-door" class="door-panel-right absolute right-0 top-0 w-1/2 h-full z-20 shadow-2xl"
-                 style="background: linear-gradient(rgba(45,24,16,0.35), rgba(45,24,16,0.45)), url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=400&q=80') center/cover;">
-                <div class="h-full w-full border-l border-amber-950/60 flex items-center justify-start pl-2">
-                    <div class="w-4 h-16 rounded-full bg-amber-600/60 border border-amber-300 shadow-md"></div>
-                </div>
+            <!-- বাম পাল্লা (কারুকার্যময় কাঠ ও হাতল)[span_4](start_span)[span_4](end_span) -->
+            <div id="door-left" class="door-leaf-left door-wood-pattern absolute left-0 top-0 w-1/2 h-full z-20 flex items-center justify-end pr-2 border-r border-amber-950/80">
+                <div class="w-4 h-20 rounded-full bg-gradient-to-b from-amber-300 via-amber-600 to-amber-900 border border-amber-200 shadow-xl"></div>
             </div>
 
-            <!-- দরজার সামনের টেক্সট ও ক্লিক বাটন -->
-            <div id="door-front-content" class="absolute inset-0 z-25 flex flex-col items-center justify-end pb-12 bg-black/30 transition-opacity duration-700 pointer-events-auto">
+            <!-- ডান পাল্লা (কারুকার্যময় কাঠ ও হাতল)[span_5](start_span)[span_5](end_span) -->
+            <div id="door-right" class="door-leaf-right door-wood-pattern absolute right-0 top-0 w-1/2 h-full z-20 flex items-center justify-start pl-2 border-l border-amber-950/80">
+                <div class="w-4 h-20 rounded-full bg-gradient-to-b from-amber-300 via-amber-600 to-amber-900 border border-amber-200 shadow-xl"></div>
+            </div>
+
+            <!-- দরজার সামনের অংশ: বর-কনের নাম ও সিলমোহর বোতাম[span_6](start_span)[span_6](end_span) -->
+            <div id="door-action-box" class="absolute inset-0 z-25 flex flex-col items-center justify-end pb-12 bg-black/40 transition-opacity duration-700">
                 <div class="text-center text-white px-4">
-                    <p class="font-arabic text-2xl text-amber-300 drop-shadow mb-1">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-                    <h2 id="door-couple" class="font-arabic-title text-4xl text-amber-200 drop-shadow-md my-2 tracking-wide">محمد & ريف</h2>
-                    <p id="door-guest" class="text-xs text-amber-100/90 font-light mt-1 hidden"></p>
+                    <p class="text-xs uppercase tracking-widest text-amber-300 font-semibold mb-1">শুভ বিবাহ আমন্ত্রণ</p>
+                    <h2 id="door-couple-name" class="font-wedding text-4xl text-amber-200 drop-shadow-lg mb-2">Groom & Bride</h2>
+                    <p id="door-guest-greeting" class="text-xs text-amber-100 bg-black/40 px-3 py-1 rounded-full border border-amber-400/30 inline-block mb-4 hidden"></p>
 
-                    <button onclick="handleDoorOpen()" class="mt-6 px-7 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 font-bold rounded-full shadow-2xl transform transition active:scale-95 flex items-center gap-2 mx-auto">
-                        <i class="fa-solid fa-envelope-open"></i> <span>দাওয়াতনামা খুলুন</span>
+                    <!-- রাজকীয় সিলমোহরযুক্ত গোল বাটন[span_7](start_span)[span_7](end_span) -->
+                    <button onclick="triggerDoorOpening()" class="mt-2 w-28 h-28 rounded-full bg-gradient-to-tr from-amber-700 via-amber-500 to-amber-300 p-1 shadow-2xl transform active:scale-95 transition mx-auto flex flex-col items-center justify-center border-2 border-amber-100">
+                        <span class="font-arabic text-xl text-stone-950 font-bold leading-none">﷽</span>
+                        <span class="text-[11px] font-bold text-stone-950 mt-1">খুলুন</span>
+                        <i class="fa-solid fa-envelope-open text-xs text-stone-950 mt-0.5"></i>
                     </button>
                 </div>
             </div>
@@ -234,108 +268,61 @@
 
 
     <!-- =========================================================================
-         [৩] মূল প্রিমিয়াম স্ক্রলেবল কার্ড (ভিডিওর হুবহু কার্ড ইন্টারফেস)
+         [৩] মূল প্রিমিয়াম স্ক্রলেবল ওয়েডিং কার্ড (দরজা খোলার পর দৃশ্যমান হবে)
     ========================================================================== -->
-    <div id="main-card" class="hidden opacity-0 transition-opacity duration-1000 max-w-md mx-auto min-h-screen shadow-2xl relative pb-24 bg-[#fffaf5] dark:bg-stone-900">
+    <main id="main-card" class="hidden opacity-0 transition-opacity duration-1000 max-w-lg mx-auto min-h-screen shadow-2xl relative pb-24 bg-[#fcfaf6] dark:bg-stone-900 bg-cover bg-center">
         
-        <!-- ফ্লোটিং মিউজিক ও থিম বাটন -->
+        <!-- ফ্লোটিং কন্ট্রোল (মিউজিক ও থিম) -->
         <div class="fixed top-4 right-4 z-50 flex gap-2">
-            <button onclick="toggleMusicState()" id="music-btn" class="w-10 h-10 rounded-full glass flex items-center justify-center text-amber-600 shadow-md">
+            <button onclick="toggleAudio()" id="music-btn" class="w-10 h-10 rounded-full glass flex items-center justify-center text-amber-600 shadow-md">
                 <i id="music-icon" class="fa-solid fa-volume-high"></i>
             </button>
-            <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center text-amber-600 shadow-md">
+            <button onclick="toggleThemeMode()" class="w-10 h-10 rounded-full glass flex items-center justify-center text-amber-600 shadow-md">
                 <i class="fa-solid fa-moon"></i>
             </button>
         </div>
 
-        <!-- হিরো সেকশন -->
-        <header class="relative pt-12 pb-8 px-6 text-center border-b border-amber-500/10">
-            <p class="font-arabic text-3xl text-amber-600 mb-2">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-            <div class="glass mx-auto p-4 rounded-2xl max-w-sm mt-3 border border-amber-500/20 shadow-sm">
-                <p class="font-arabic text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+        <!-- টপ হেডার ও কুরআনের বাণী[span_8](start_span)[span_8](end_span) -->
+        <header class="relative pt-12 pb-6 px-6 text-center border-b border-amber-500/15">
+            <div class="font-arabic text-3xl text-amber-700 dark:text-amber-400 mb-2">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="glass mx-auto p-4 rounded-2xl max-w-sm mt-3 shadow-sm border border-amber-500/20">
+                <p class="font-arabic text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
                     "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
                 </p>
+                <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-2">
+                    "এবং তাঁর নিদর্শনাবলীর মধ্যে আর একটি নিদর্শন এই যে, তিনি তোমাদের জন্যে তোমাদের মধ্য থেকে তোমাদের সঙ্গিনীদের সৃষ্টি করেছেন, যাতে তোমরা তাদের কাছে শান্তিতে থাকতে পারো..." (সূরা আর-রূম: ২১)
+                </p>
             </div>
-            <div class="w-8 h-1 bg-amber-400 mx-auto rounded-full my-4"></div>
-            <p class="text-[11px] uppercase tracking-widest text-stone-400 font-bold">بطاقة دعوة</p>
-            <h1 id="card-couple-header" class="font-arabic-title text-4xl text-amber-600 dark:text-amber-400 my-2">محمد & ريف</h1>
+            <div class="w-10 h-1 bg-amber-400 mx-auto rounded-full my-4"></div>
+            <p class="text-xs uppercase tracking-widest text-stone-500 font-bold">দাওয়াতনামা</p>
+            <h1 id="card-couple-title" class="font-wedding text-5xl text-amber-700 dark:text-amber-400 my-2">Groom & Bride</h1>
         </header>
 
-        <!-- দাওয়াতনামা ও পরিবার -->
+        <!-- সম্মানিত মেহমান অভিবাদন সেকশন -->
+        <section id="guest-card-box" class="px-6 py-4 hidden">
+            <div class="glass p-4 rounded-2xl border-l-4 border-amber-500 text-center shadow-sm">
+                <span class="text-xs text-stone-400 uppercase tracking-wider font-semibold">সম্মানিত মেহমান</span>
+                <h3 id="card-guest-title" class="text-xl font-bold text-amber-600 dark:text-amber-400 mt-0.5"></h3>
+                <p id="card-guest-msg" class="text-xs text-stone-600 dark:text-stone-300 italic mt-1.5"></p>
+            </div>
+        </section>
+
+        <!-- বর ও কনের পরিচিতি সেকশন[span_9](start_span)[span_9](end_span) -->
         <section class="p-6 text-center space-y-6">
-            <div class="glass p-5 rounded-3xl border border-amber-500/15 shadow-sm">
-                <p id="card-welcome-message" class="text-xs text-stone-600 dark:text-stone-300 leading-relaxed italic">
-                    আমাদের জীবনের এই পরম শুভলগ্নে আপনাদের স্ববান্ধব উপস্থিতি ও আন্তরিক দু'আ আমাদের একান্ত কাম্য।
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-amber-500/10 text-xs">
-                    <div>
-                        <p class="text-stone-400 text-[10px]">والد العريس</p>
-                        <p id="card-groom-parents" class="font-bold text-amber-700 dark:text-amber-300 mt-0.5"></p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- বর -->
+                <div class="glass p-5 rounded-3xl border border-amber-500/15 shadow-sm">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-amber-100 dark:bg-stone-800 border-2 border-amber-500 flex items-center justify-center text-amber-600 text-2xl shadow">
+                        <i class="fa-solid fa-user-tie"></i>
                     </div>
-                    <div>
-                        <p class="text-stone-400 text-[10px]">والد العروس</p>
-                        <p id="card-bride-parents" class="font-bold text-amber-700 dark:text-amber-300 mt-0.5"></p>
+                    <h3 id="card-groom" class="text-xl font-bold text-amber-700 dark:text-amber-400 mt-2">বর</h3>
+                    <p id="card-gparents" class="text-xs text-stone-500 dark:text-stone-400 mt-1"></p>
+                </div>
+
+                <!-- কনে -->
+                <div class="glass p-5 rounded-3xl border border-amber-500/15 shadow-sm">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-amber-100 dark:bg-stone-800 border-2 border-amber-500 flex items-center justify-center text-amber-600 text-2xl shadow">
+                        <i class="fa-solid fa-heart"></i>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- কাউন্টডাউন টাইমার -->
-        <section class="px-6 py-2 text-center">
-            <p class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-3">باقي على فرحتنا</p>
-            <div class="grid grid-cols-4 gap-2 text-stone-800 dark:text-white">
-                <div class="glass p-2.5 rounded-2xl shadow-sm"><span id="days" class="block text-2xl font-bold text-amber-600">00</span><span class="text-[10px] text-stone-400 uppercase">يوم</span></div>
-                <div class="glass p-2.5 rounded-2xl shadow-sm"><span id="hours" class="block text-2xl font-bold text-amber-600">00</span><span class="text-[10px] text-stone-400 uppercase">ساعة</span></div>
-                <div class="glass p-2.5 rounded-2xl shadow-sm"><span id="minutes" class="block text-2xl font-bold text-amber-600">00</span><span class="text-[10px] text-stone-400 uppercase">دقيقة</span></div>
-                <div class="glass p-2.5 rounded-2xl shadow-sm"><span id="seconds" class="block text-2xl font-bold text-amber-600">00</span><span class="text-[10px] text-stone-400 uppercase">ثانية</span></div>
-            </div>
-        </section>
-
-        <!-- অনুষ্ঠানসূচি (Timeline) -->
-        <section class="p-6">
-            <div class="glass p-5 rounded-3xl border border-amber-500/15 shadow-sm space-y-4">
-                <p class="text-center text-xs font-bold text-amber-600 dark:text-amber-400 mb-2">برنامج الحفل</p>
-                <div class="flex items-center justify-between text-xs py-1 border-b border-stone-200 dark:border-stone-800">
-                    <span class="text-stone-500">استقبال الضيوف</span>
-                    <span class="font-bold text-amber-600">০৭:৩০ PM</span>
-                </div>
-                <div class="flex items-center justify-between text-xs py-1 border-b border-stone-200 dark:border-stone-800">
-                    <span class="text-stone-500">عقد القران والزفة</span>
-                    <span class="font-bold text-amber-600">০৮:৩০ PM</span>
-                </div>
-                <div class="flex items-center justify-between text-xs py-1">
-                    <span class="text-stone-500">العشاء المبارك</span>
-                    <span class="font-bold text-amber-600">০৯:৩০ PM</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ভেন্যু ও লোকেশন বাটন -->
-        <section class="p-6">
-            <div class="glass p-5 rounded-3xl text-center border border-amber-500/15 shadow-sm">
-                <i class="fa-solid fa-location-dot text-2xl text-amber-500 mb-2"></i>
-                <p class="text-xs text-stone-400">مكان الحفل</p>
-                <h4 id="card-venue-name" class="font-bold text-sm my-1">Grand Palace Hall</h4>
-                <a id="card-map-btn" href="#" target="_blank" class="mt-3 inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full text-xs font-bold shadow-md transition">
-                    <i class="fa-solid fa-map-location-dot"></i> <span>الموقع على الخريطة</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- বিশেষ নোটিশ / নির্দেশনা -->
-        <section id="note-section" class="px-6 hidden">
-            <div class="p-4 rounded-2xl bg-amber-50 dark:bg-stone-800/80 border-r-4 border-amber-500 text-xs text-stone-600 dark:text-stone-300">
-                <p class="font-bold text-amber-700 dark:text-amber-400 mb-1">تنبيهات هامة</p>
-                <p id="card-note-text"></p>
-            </div>
-        </section>
-
-        <!-- ক্যালেন্ডার সেভ বাটন -->
-        <section class="p-6 text-center">
-            <div class="glass p-4 rounded-2xl border border-amber-500/15">
-                <p class="text-xs text-stone-400 mb-2">احفظ الموعد في تقويمك</p>
-                <div class="flex justify-center gap-2">
-                    <button onclick="addToGoogleCalendar()" class="px-4 py-2 bg-stone-800 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow">
-                        <i class="fa-brands fa-google"></i> Google Calendar
-                    </button>
+                    <h3 id="card-bride" class="text-xl font-bold text-amber-700 dark:text-amber-400 mt-2">কনে</h3>
+                    <p id="card-bparents" class="text-xs text-stone-500 dark:text-st
