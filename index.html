@@ -32,19 +32,887 @@ body.guest-mode .editor,body.guest-mode #adminToggle{display:none!important}body
 </header>
 <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
 <main class="wrap">
-<section class="hero" id="gateSection" aria-label="দাওয়াতনামার প্রবেশদ্বার">
-  <div class="gate-scene door-container" id="doorContainer">
-    <div class="inner-glow"></div><div class="gate-arch"></div><div class="gate-title" lang="ar" dir="rtl">عَقْدٌ مُبَارَكٌ<span lang="bn" dir="ltr">শুভ বিবাহ • দাওয়াতনামা</span></div>
-    <div class="door left"></div><div class="door right"></div>
-    <span class="bird" style="--delay:.1s;--x:-180;--y:-250;--rot:-35deg">🕊</span>
-    <span class="bird" style="--delay:.22s;--x:170;--y:-280;--rot:35deg">🕊</span>
-    <span class="bird" style="--delay:.34s;--x:-100;--y:-190;--rot:-18deg">🕊</span>
-    <span class="bird" style="--delay:.45s;--x:110;--y:-220;--rot:25deg">🕊</span>
-    <button class="gate-seal" id="openGateBtn" type="button" aria-label="দাওয়াতনামা দেখতে গেট খুলুন">
-      <span><span class="arabic">﷽</span><strong>দাওয়াতনামা খুলুন</strong><small>Open the Gate ✦</small></span>
-    </button>
-    <div class="scene-caption" id="gateCaption">দাওয়াতনামা দেখতে দরজাটি খুলুন</div>
+
+<!-- ROYAL PALACE WEDDING GATE -->
+<div id="royalWeddingGate">
+  <div class="royal-sky"></div>
+
+  <!-- Palace arch -->
+  <div class="royal-arch">
+    <div class="royal-arch-inner"></div>
+    <div class="royal-top-ornament">❖ ✦ ❖ ✦ ❖</div>
   </div>
+
+  <!-- Gate sign -->
+  <!-- দরজা খোলার পর স্বাগত বার্তা -->
+<div id="welcomeMessage" class="royal-welcome-container">
+    <div class="logo-circle">JNT</div>
+    <div class="arabic-text">أَهْلاً وَسَهْلاً</div>
+    <div class="bengali-text">আপনাদের আন্তরিক স্বাগতম। এই মহতী অনুষ্ঠানে উপস্থিত থেকে বর-কনের জন্য দোয়া কামনা করি।</div>
+</div>
+
+<style>
+.royal-welcome-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: radial-gradient(circle, #2d1a04 0%, #0d0600 100%);
+    border: 3px solid #e2bd70;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    width: 80%;
+    max-width: 450px;
+    box-shadow: 0 0 20px rgba(226, 189, 112, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.s, visibility 1s;
+}
+
+/* দরজা খোলার পর বার্তাটি দৃশ্যমান করার জন্য */
+#royalWeddingGate.royal-open .royal-welcome-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+.logo-circle {
+    display: inline-block;
+    border: 2px solid #e2bd70;
+    border-radius: 50%;
+    color: #e2bd70;
+    font-family: serif;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.arabic-text {
+    font-size: 32px;
+    color: #f1d28b;
+    font-family: 'Amiri', serif;
+    margin-bottom: 10px;
+}
+
+.bengali-text {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+</style>
+
+  <div class="royal-sign">
+    <div class="royal-sign-ar">بَارَكَ اللَّهُ لَكُمَا</div>
+    <div class="royal-sign-bn">শুভ বিবাহ</div>
+    <div class="royal-sign-decor">◆ ━━━━━ ✦ ━━━━━ ◆</div>
+  </div>
+
+  <!-- Left royal door -->
+  <div class="royal-door royal-left">
+    <div class="royal-door-frame">
+      <div class="royal-dome">♛</div>
+      <div class="royal-medallion">۞</div>
+      <div class="royal-pattern">❖　✦　❖<br>✧　۞　✧<br>❖　✦　❖</div>
+      <div class="royal-door-bottom">❧ ❖ ❧</div>
+    </div>
+    <div class="royal-handle"></div>
+  </div>
+
+  <!-- Right royal door -->
+  <div class="royal-door royal-right">
+    <div class="royal-door-frame">
+      <div class="royal-dome">♛</div>
+      <div class="royal-medallion">۞</div>
+      <div class="royal-pattern">❖　✦　❖<br>✧　۞　✧<br>❖　✦　❖</div>
+      <div class="royal-door-bottom">❧ ❖ ❧</div>
+    </div>
+    <div class="royal-handle"></div>
+  </div>
+
+  <div class="royal-ground"></div>
+
+  <div class="royal-instruction">
+    <span>✦</span> প্রবেশ করতে স্পর্শ করুন <span>✦</span>
+  </div>
+</div>
+
+<style>
+#royalWeddingGate {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  background:
+    radial-gradient(ellipse at 50% 38%,
+      #fff9e7 0%, #ead4a2 50%, #9d7746 100%);
+  perspective: 1600px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#royalWeddingGate * { box-sizing: border-box; }
+
+#royalWeddingGate .royal-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 35%,
+      #fffde8 0%, #fff2c6 25%, transparent 67%),
+    linear-gradient(90deg,#76532c44,transparent,#76532c44);
+}
+
+#royalWeddingGate .royal-arch {
+  position: absolute;
+  z-index: 2;
+  top: 4%;
+  bottom: -4%;
+  left: 3%;
+  right: 3%;
+  border: 8px solid #a77a34;
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 24% 24% 0 0;
+  box-shadow:
+    0 0 0 3px #f9e4a8,
+    0 0 0 8px #725024,
+    inset 0 0 0 5px #e7c578,
+    0 0 35px #5d391c77;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-arch-inner {
+  position: absolute;
+  inset: 12px 12px 0;
+  border: 2px solid #f4d995;
+  border-bottom: 0;
+  border-radius: inherit;
+}
+
+#royalWeddingGate .royal-top-ornament {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff0b5;
+  font-size: clamp(19px,4vw,32px);
+  text-shadow: 0 2px 4px #593719;
+}
+
+/* Sign above the gate */
+#royalWeddingGate .royal-sign {
+  position: absolute;
+  z-index: 9;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  padding: 12px 5px;
+  text-align: center;
+  color: #fff0b5;
+  background: linear-gradient(180deg,#72502b,#392515 48%,#72502b);
+  border: 2px solid #e8c775;
+  outline: 2px solid #795528;
+  box-shadow: 0 4px 18px #29160866;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-sign-ar {
+  font-size: clamp(18px,4vw,29px);
+  direction: rtl;
+}
+
+#royalWeddingGate .royal-sign-bn {
+  margin-top: 5px;
+  font-size: clamp(27px,6vw,42px);
+  font-weight: bold;
+  color: #ffedb4;
+  text-shadow: 0 2px 2px #301907;
+}
+
+#royalWeddingGate .royal-sign-decor {
+  margin-top: 5px;
+  color: #f2d38a;
+  font-size: 12px;
+}
+
+/* Heavy golden palace doors */
+#royalWeddingGate .royal-door {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  height: 100%;
+  width: 50.5%;
+  overflow: hidden;
+  border: 3px solid #d8b56c;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 36px,
+      #27180b33 37px 40px,
+      #f3d58b22 41px 43px
+    ),
+    linear-gradient(
+      90deg,
+      #382312 0%,
+      #795126 12%,
+      #4b3019 28%,
+      #a87a3b 48%,
+      #604020 68%,
+      #8b602f 86%,
+      #382312 100%
+    );
+  box-shadow:
+    inset 0 0 0 6px #c99e50,
+    inset 0 0 0 11px #4a2c16,
+    inset 0 0 0 15px #e2bd70,
+    inset 0 0 45px #170d08aa,
+    0 0 25px #3b210f55;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  transition:
+    transform 2.5s cubic-bezier(.72,0,.18,1),
+    filter 2s;
+}
+
+#royalWeddingGate .royal-left {
+  left: 0;
+  transform-origin: left center;
+}
+
+#royalWeddingGate .royal-right {
+  right: 0;
+  transform-origin: right center;
+}
+
+#royalWeddingGate .royal-door-frame {
+  position: absolute;
+  inset: 25% 9% 5%;
+  border: 3px solid #e4c176;
+  outline: 2px solid #714b24;
+  box-shadow:
+    inset 0 0 0 5px #3d2715,
+    inset 0 0 0 8px #d3aa5e,
+    inset 0 0 35px #1b100a99;
+  background:
+    radial-gradient(ellipse at 50% 30%,#946a37aa,transparent 65%),
+    linear-gradient(145deg,#5b3b20,#2d1b0f 55%,#6c4928);
+}
+
+#royalWeddingGate .royal-dome {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #f4d58c;
+  font-size: clamp(30px,6vw,48px);
+  text-shadow: 0 0 12px #e7be6c55;
+}
+
+#royalWeddingGate .royal-medallion {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(65px,15vw,110px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 3px double #edcc7e;
+  outline: 3px solid #765024;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle,#8d6735,#3d2714 70%);
+  color: #f6d98e;
+  font-size: clamp(37px,9vw,65px);
+  box-shadow: 0 0 0 5px #b58a45, inset 0 0 15px #170d08;
+}
+
+#royalWeddingGate .royal-pattern {
+  position: absolute;
+  top: 53%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 2.2;
+  color: #e5c274;
+  font-size: clamp(16px,3.6vw,25px);
+  text-shadow: 0 1px 2px #1e1107;
+}
+
+#royalWeddingGate .royal-door-bottom {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #f1d28b;
+  font-size: clamp(20px,4vw,30px);
+}
+
+#royalWeddingGate .royal-handle {
+  position: absolute;
+  top: 59%;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%,#fff6c4,#c28b32 58%,#533114);
+  box-shadow: 0 0 0 4px #e2bd70, 0 2px 9px #140b05;
+}
+
+#royalWeddingGate .royal-left .royal-handle {
+  right: 9%;
+}
+
+#royalWeddingGate .royal-right .royal-handle {
+  left: 9%;
+}
+
+/* Ground */
+#royalWeddingGate .royal-ground {
+  position: absolute;
+  z-index: 3;
+  bottom: -10%;
+  left: -20%;
+  width: 140%;
+  height: 26%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg,#e8d09b,#fff2d1,#b28a50);
+  box-shadow: 0 -5px 24px #fff5d4;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-instruction {
+  position: absolute;
+  z-index: 20;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 20px;
+  max-width: 90%;
+  width: max-content;
+  border: 1px solid #f7df9c;
+  border-radius: 40px;
+  background: linear-gradient(135deg,#684521,#382313);
+  color: #fff0bd;
+  font-size: clamp(13px,3.3vw,17px);
+  box-shadow: 0 4px 20px #28170855;
+  text-align: center;
+  animation: royalGlow 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-instruction span {
+  color: #f5d48b;
+}
+
+/* Doors swing open */
+#royalWeddingGate.royal-open .royal-left {
+  transform: perspective(1400px) rotateY(-112deg);
+  filter: brightness(.75);
+}
+
+#royalWeddingGate.royal-open .royal-right {
+  transform: perspective(1400px) rotateY(112deg);
+  filter: brightness(.75);
+}
+
+#royalWeddingGate.royal-open .royal-sign,
+#royalWeddingGate.royal-open .royal-instruction {
+  opacity: 0;
+  transition: opacity .7s;
+}
+
+@keyframes royalGlow {
+  from { box-shadow: 0 4px 15px #28170833; }
+  to { box-shadow: 0 4px 28px #ffe5a277; }
+}
+
+@media(max-height:600px) {
+  #royalWeddingGate .royal-sign { top: 4%; }
+  #royalWeddingGate .royal-door-frame { top: 21%; }
+  #royalWeddingGate .royal-instruction { bottom: 2%; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #royalWeddingGate * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+<script>
+(function () {
+  const gate = document.getElementById("royalWeddingGate");
+  if (!gate) return;
+
+  let opening = false;
+
+  function openRoyalGate() {
+    if (opening) return;
+    opening = true;
+    gate.classList.add("royal-open");
+
+    // দরজা খোলার পরে শুধু গেটের স্তর সরানো হবে।
+    // পেছনের ওয়েবসাইটের কোডে কোনো পরিবর্তন হবে না।
+    setTimeout(function () {
+      gate.remove();
+    }, 2700);
+  }
+
+  // স্ক্রিনের যেকোনো জায়গায় টাচ বা ক্লিক করলেই গেট খুলবে।
+  gate.addEventListener("click", openRoyalGate);
+  gate.addEventListener("touchstart", function () {
+    // ক্লিক ইভেন্ট টাচের পর স্বাভাবিকভাবে কাজ করবে।
+  }, { passive: true });
+})();
+</script>
+<!-- ROYAL PALACE WEDDING GATE END -->
+
+<!-- ROYAL PALACE WEDDING GATE -->
+<div id="royalWeddingGate">
+  <div class="royal-sky"></div>
+
+  <!-- Palace arch -->
+  <div class="royal-arch">
+    <div class="royal-arch-inner"></div>
+    <div class="royal-top-ornament">❖ ✦ ❖ ✦ ❖</div>
+  </div>
+
+  <!-- Gate sign -->
+  <!-- দরজা খোলার পর স্বাগত বার্তা -->
+<div id="welcomeMessage" class="royal-welcome-container">
+    <div class="logo-circle">JNT</div>
+    <div class="arabic-text">أَهْلاً وَسَهْلاً</div>
+    <div class="bengali-text">আপনাদের আন্তরিক স্বাগতম। এই মহতী অনুষ্ঠানে উপস্থিত থেকে বর-কনের জন্য দোয়া কামনা করি।</div>
+</div>
+
+<style>
+.royal-welcome-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: radial-gradient(circle, #2d1a04 0%, #0d0600 100%);
+    border: 3px solid #e2bd70;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    width: 80%;
+    max-width: 450px;
+    box-shadow: 0 0 20px rgba(226, 189, 112, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.s, visibility 1s;
+}
+
+/* দরজা খোলার পর বার্তাটি দৃশ্যমান করার জন্য */
+#royalWeddingGate.royal-open .royal-welcome-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+.logo-circle {
+    display: inline-block;
+    border: 2px solid #e2bd70;
+    border-radius: 50%;
+    color: #e2bd70;
+    font-family: serif;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.arabic-text {
+    font-size: 32px;
+    color: #f1d28b;
+    font-family: 'Amiri', serif;
+    margin-bottom: 10px;
+}
+
+.bengali-text {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+</style>
+
+  <div class="royal-sign">
+    <div class="royal-sign-ar">بَارَكَ اللَّهُ لَكُمَا</div>
+    <div class="royal-sign-bn">শুভ বিবাহ</div>
+    <div class="royal-sign-decor">◆ ━━━━━ ✦ ━━━━━ ◆</div>
+  </div>
+
+  <!-- Left royal door -->
+  <div class="royal-door royal-left">
+    <div class="royal-door-frame">
+      <div class="royal-dome">♛</div>
+      <div class="royal-medallion">۞</div>
+      <div class="royal-pattern">❖　✦　❖<br>✧　۞　✧<br>❖　✦　❖</div>
+      <div class="royal-door-bottom">❧ ❖ ❧</div>
+    </div>
+    <div class="royal-handle"></div>
+  </div>
+
+  <!-- Right royal door -->
+  <div class="royal-door royal-right">
+    <div class="royal-door-frame">
+      <div class="royal-dome">♛</div>
+      <div class="royal-medallion">۞</div>
+      <div class="royal-pattern">❖　✦　❖<br>✧　۞　✧<br>❖　✦　❖</div>
+      <div class="royal-door-bottom">❧ ❖ ❧</div>
+    </div>
+    <div class="royal-handle"></div>
+  </div>
+
+  <div class="royal-ground"></div>
+
+  <div class="royal-instruction">
+    <span>✦</span> প্রবেশ করতে স্পর্শ করুন <span>✦</span>
+  </div>
+</div>
+
+<style>
+#royalWeddingGate {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  background:
+    radial-gradient(ellipse at 50% 38%,
+      #fff9e7 0%, #ead4a2 50%, #9d7746 100%);
+  perspective: 1600px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#royalWeddingGate * { box-sizing: border-box; }
+
+#royalWeddingGate .royal-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 35%,
+      #fffde8 0%, #fff2c6 25%, transparent 67%),
+    linear-gradient(90deg,#76532c44,transparent,#76532c44);
+}
+
+#royalWeddingGate .royal-arch {
+  position: absolute;
+  z-index: 2;
+  top: 4%;
+  bottom: -4%;
+  left: 3%;
+  right: 3%;
+  border: 8px solid #a77a34;
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 24% 24% 0 0;
+  box-shadow:
+    0 0 0 3px #f9e4a8,
+    0 0 0 8px #725024,
+    inset 0 0 0 5px #e7c578,
+    0 0 35px #5d391c77;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-arch-inner {
+  position: absolute;
+  inset: 12px 12px 0;
+  border: 2px solid #f4d995;
+  border-bottom: 0;
+  border-radius: inherit;
+}
+
+#royalWeddingGate .royal-top-ornament {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff0b5;
+  font-size: clamp(19px,4vw,32px);
+  text-shadow: 0 2px 4px #593719;
+}
+
+/* Sign above the gate */
+#royalWeddingGate .royal-sign {
+  position: absolute;
+  z-index: 9;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  padding: 12px 5px;
+  text-align: center;
+  color: #fff0b5;
+  background: linear-gradient(180deg,#72502b,#392515 48%,#72502b);
+  border: 2px solid #e8c775;
+  outline: 2px solid #795528;
+  box-shadow: 0 4px 18px #29160866;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-sign-ar {
+  font-size: clamp(18px,4vw,29px);
+  direction: rtl;
+}
+
+#royalWeddingGate .royal-sign-bn {
+  margin-top: 5px;
+  font-size: clamp(27px,6vw,42px);
+  font-weight: bold;
+  color: #ffedb4;
+  text-shadow: 0 2px 2px #301907;
+}
+
+#royalWeddingGate .royal-sign-decor {
+  margin-top: 5px;
+  color: #f2d38a;
+  font-size: 12px;
+}
+
+/* Heavy golden palace doors */
+#royalWeddingGate .royal-door {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  height: 100%;
+  width: 50.5%;
+  overflow: hidden;
+  border: 3px solid #d8b56c;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 36px,
+      #27180b33 37px 40px,
+      #f3d58b22 41px 43px
+    ),
+    linear-gradient(
+      90deg,
+      #382312 0%,
+      #795126 12%,
+      #4b3019 28%,
+      #a87a3b 48%,
+      #604020 68%,
+      #8b602f 86%,
+      #382312 100%
+    );
+  box-shadow:
+    inset 0 0 0 6px #c99e50,
+    inset 0 0 0 11px #4a2c16,
+    inset 0 0 0 15px #e2bd70,
+    inset 0 0 45px #170d08aa,
+    0 0 25px #3b210f55;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  transition:
+    transform 2.5s cubic-bezier(.72,0,.18,1),
+    filter 2s;
+}
+
+#royalWeddingGate .royal-left {
+  left: 0;
+  transform-origin: left center;
+}
+
+#royalWeddingGate .royal-right {
+  right: 0;
+  transform-origin: right center;
+}
+
+#royalWeddingGate .royal-door-frame {
+  position: absolute;
+  inset: 25% 9% 5%;
+  border: 3px solid #e4c176;
+  outline: 2px solid #714b24;
+  box-shadow:
+    inset 0 0 0 5px #3d2715,
+    inset 0 0 0 8px #d3aa5e,
+    inset 0 0 35px #1b100a99;
+  background:
+    radial-gradient(ellipse at 50% 30%,#946a37aa,transparent 65%),
+    linear-gradient(145deg,#5b3b20,#2d1b0f 55%,#6c4928);
+}
+
+#royalWeddingGate .royal-dome {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #f4d58c;
+  font-size: clamp(30px,6vw,48px);
+  text-shadow: 0 0 12px #e7be6c55;
+}
+
+#royalWeddingGate .royal-medallion {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(65px,15vw,110px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 3px double #edcc7e;
+  outline: 3px solid #765024;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle,#8d6735,#3d2714 70%);
+  color: #f6d98e;
+  font-size: clamp(37px,9vw,65px);
+  box-shadow: 0 0 0 5px #b58a45, inset 0 0 15px #170d08;
+}
+
+#royalWeddingGate .royal-pattern {
+  position: absolute;
+  top: 53%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 2.2;
+  color: #e5c274;
+  font-size: clamp(16px,3.6vw,25px);
+  text-shadow: 0 1px 2px #1e1107;
+}
+
+#royalWeddingGate .royal-door-bottom {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #f1d28b;
+  font-size: clamp(20px,4vw,30px);
+}
+
+#royalWeddingGate .royal-handle {
+  position: absolute;
+  top: 59%;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%,#fff6c4,#c28b32 58%,#533114);
+  box-shadow: 0 0 0 4px #e2bd70, 0 2px 9px #140b05;
+}
+
+#royalWeddingGate .royal-left .royal-handle {
+  right: 9%;
+}
+
+#royalWeddingGate .royal-right .royal-handle {
+  left: 9%;
+}
+
+/* Ground */
+#royalWeddingGate .royal-ground {
+  position: absolute;
+  z-index: 3;
+  bottom: -10%;
+  left: -20%;
+  width: 140%;
+  height: 26%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg,#e8d09b,#fff2d1,#b28a50);
+  box-shadow: 0 -5px 24px #fff5d4;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-instruction {
+  position: absolute;
+  z-index: 20;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 20px;
+  max-width: 90%;
+  width: max-content;
+  border: 1px solid #f7df9c;
+  border-radius: 40px;
+  background: linear-gradient(135deg,#684521,#382313);
+  color: #fff0bd;
+  font-size: clamp(13px,3.3vw,17px);
+  box-shadow: 0 4px 20px #28170855;
+  text-align: center;
+  animation: royalGlow 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+#royalWeddingGate .royal-instruction span {
+  color: #f5d48b;
+}
+
+/* Doors swing open */
+#royalWeddingGate.royal-open .royal-left {
+  transform: perspective(1400px) rotateY(-112deg);
+  filter: brightness(.75);
+}
+
+#royalWeddingGate.royal-open .royal-right {
+  transform: perspective(1400px) rotateY(112deg);
+  filter: brightness(.75);
+}
+
+#royalWeddingGate.royal-open .royal-sign,
+#royalWeddingGate.royal-open .royal-instruction {
+  opacity: 0;
+  transition: opacity .7s;
+}
+
+@keyframes royalGlow {
+  from { box-shadow: 0 4px 15px #28170833; }
+  to { box-shadow: 0 4px 28px #ffe5a277; }
+}
+
+@media(max-height:600px) {
+  #royalWeddingGate .royal-sign { top: 4%; }
+  #royalWeddingGate .royal-door-frame { top: 21%; }
+  #royalWeddingGate .royal-instruction { bottom: 2%; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #royalWeddingGate * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+<script>
+(function () {
+  const gate = document.getElementById("royalWeddingGate");
+  if (!gate) return;
+
+  let opening = false;
+
+  function openRoyalGate() {
+    if (opening) return;
+    opening = true;
+    gate.classList.add("royal-open");
+
+    // দরজা খোলার পরে শুধু গেটের স্তর সরানো হবে।
+    // পেছনের ওয়েবসাইটের কোডে কোনো পরিবর্তন হবে না।
+    setTimeout(function () {
+      gate.remove();
+    }, 2700);
+  }
+
+  // স্ক্রিনের যেকোনো জায়গায় টাচ বা ক্লিক করলেই গেট খুলবে।
+  gate.addEventListener("click", openRoyalGate);
+  gate.addEventListener("touchstart", function () {
+    // ক্লিক ইভেন্ট টাচের পর স্বাভাবিকভাবে কাজ করবে।
+  }, { passive: true });
+})();
+</script>
+<!-- ROYAL PALACE WEDDING GATE END -->
+  
 </section>
 
 <article class="card" id="invitationCard">
@@ -146,7 +1014,7 @@ const DEFAULTS={
  guest:"",guestMessage:"আপনার উপস্থিতি আমাদের একান্ত কাম্য।",invite:"আলহামদুলিল্লাহ। মহান আল্লাহর অশেষ রহমতে আমাদের পরিবারের শুভ বিবাহ অনুষ্ঠানে আপনাকে সাদর আমন্ত্রণ জানাচ্ছি। আপনার উপস্থিতি আমাদের আনন্দকে পূর্ণতা দেবে, ইনশাআল্লাহ।",
  dua:"আল্লাহ আপনাদের উভয়ের জন্য বরকত দান করুন, আপনাদের ওপর বরকত নাজিল করুন এবং কল্যাণের মধ্যে আপনাদের একত্রিত করুন।",
  share:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\\n\\nআমাদের পরিবারের বিয়ের অনুষ্ঠানে আপনাকে সাদর আমন্ত্রণ জানাচ্ছি। আপনার উপস্থিতি একান্তভাবে কামনা করছি।\\n\\nদাওয়াতনামা দেখতে নিচের লিংকে প্রবেশ করুন:\\n{URL}",
- theme:"gold",petals:"on",overlay:.3,volume:.55,musicSrc:""
+ theme:"gold",petals:"on",overlay:.3,volume:.55,musicSrc:"https://excellent-copper-6jrtzznz.edgeone.dev/"
 };
 let state={...DEFAULTS},musicURL="",bgURL="",gateURL="",opened=false;
 const fieldMap={fBride:"bride",fGroom:"groom",fGroomFather:"groomFather",fBrideFather:"brideFather",fHijri:"hijri",fGregorian:"gregorian",fTime:"time",fISO:"iso",fVenue:"venue",fAddress:"address",fMap:"map",fGuest:"guest",fGuestMessage:"guestMessage",fInvite:"invite",fDua:"duaText",fShare:"share",fPetals:"petals",fOverlay:"overlay",fVolume:"volume",fMusicUrl:"musicSrc"};
