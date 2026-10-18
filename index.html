@@ -1496,5 +1496,93 @@ const params=new URLSearchParams(location.search);if(params.has("admin")){toggle
 render();makePetals();setAudio(state.musicSrc||"");loadPublicMusicFromURL();updateCountdown();setInterval(updateCountdown,1000);
 })();
 </script>
+  
+<style>
+/* দরজা খোলার অ্যানিমেশন */
+#royalWeddingGate .royal-left {
+  transform-origin: left center;
+  transition: transform 2.5s cubic-bezier(.72, 0, .18, 1);
+}
+
+#royalWeddingGate .royal-right {
+  transform-origin: right center;
+  transition: transform 2.5s cubic-bezier(.72, 0, .18, 1);
+}
+
+/* গেট খোলার অবস্থা */
+#royalWeddingGate.royal-open .royal-left {
+  transform: perspective(1200px) rotateY(-110deg);
+}
+
+#royalWeddingGate.royal-open .royal-right {
+  transform: perspective(1200px) rotateY(110deg);
+}
+
+/* দরজা খুললে উপরের লেখাটি মিলিয়ে যাবে */
+#royalWeddingGate.royal-open .royal-sign,
+#royalWeddingGate.royal-open .royal-instruction {
+  opacity: 0;
+  transition: opacity .7s ease;
+  pointer-events: none;
+}
+
+/* স্বাগত বার্তা */
+.royal-welcome-container {
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#royalWeddingGate.royal-open .royal-welcome-container {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 1.2s;
+}
+
+#royalWeddingGate.royal-open {
+  cursor: default;
+}
+</style>
+
+<script>
+(function () {
+  const gate = document.getElementById('royalWeddingGate');
+  const replayButton = document.getElementById('replayBtn');
+
+  if (!gate) return;
+
+  function openGate() {
+    if (gate.classList.contains('royal-open')) return;
+    gate.classList.add('royal-open');
+  }
+
+  function replayGate() {
+    gate.classList.remove('royal-open');
+
+    // অ্যানিমেশন পুনরায় চালানোর সুযোগ
+    void gate.offsetWidth;
+  }
+
+  // গেটের যেকোনো স্থানে ক্লিক বা স্পর্শ
+  gate.addEventListener('click', openGate);
+
+  // কিবোর্ড থেকেও খোলা যাবে
+  gate.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openGate();
+    }
+  });
+
+  // আগের গেট আবার বন্ধ করে দেখানো
+  if (replayButton) {
+    replayButton.addEventListener('click', function (event) {
+      event.stopPropagation();
+      replayGate();
+    });
+  }
+})();
+</script>
+</body>
+</html>
+
 </body>
 </html>
