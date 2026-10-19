@@ -902,3 +902,45 @@ async function makeShareLink() {
       setStatus("শেয়ার লিংক কপি হয়েছে। এখন WhatsApp-এ পাঠিয়ে দিন।");
     } else {
       window.promp
+// FIX: Royal Wedding Door Opening
+(function () {
+  const doorStage = document.getElementById("doorStage");
+  const openButton = document.getElementById("openDoorBtn");
+
+  if (!doorStage || !openButton) {
+    console.error("Door elements not found!");
+    return;
+  }
+
+  function openWeddingDoor() {
+    doorStage.classList.add("open");
+
+    // Ensure the doors disappear after the animation
+    window.setTimeout(function () {
+      doorStage.classList.add("hidden");
+      doorStage.style.visibility = "hidden";
+      doorStage.style.pointerEvents = "none";
+    }, 2300);
+  }
+
+  openButton.addEventListener("click", openWeddingDoor);
+
+  // Fallback: allow tapping anywhere on the door's central area
+  const center = doorStage.querySelector(".door-center");
+
+  if (center) {
+    center.addEventListener("click", function (event) {
+      if (event.target !== openButton) {
+        openWeddingDoor();
+      }
+    });
+  }
+
+  // Keyboard accessibility
+  openButton.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openWeddingDoor();
+    }
+  });
+})();
