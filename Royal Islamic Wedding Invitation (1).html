@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#160d0b">
+<title>Royal Islamic Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#e0bd76;--gold-light:#fff0bd;--dark:#160d0b;--green:#123b2d;--cream:#fffaf0;--ink:#3b301d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Hind Siliguri',Georgia,serif;background:radial-gradient(ellipse at top,#53351d,transparent 65%),linear-gradient(180deg,#8a6d05,#21130d,#00100c) fixed;background-color:#1a0d07;color:#fff4df;min-height:100vh;background-size:cover;background-position:center}
+body.has-bg{background-blend-mode:normal}
+button,input,textarea{font:inherit}
+button{cursor:pointer;padding:10px 16px;border-radius:25px;border:1px solid var(--gold);background:linear-gradient(145deg,#e0bd76,#9c702b);color:#21130d;font-weight:700;transition:.25s}
+button:hover{filter:brightness(1.15);transform:translateY(-1px)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,#gate:focus-visible{outline:3px solid #fff;outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(22,13,11,.92);backdrop-filter:blur(8px);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:2px solid var(--gold)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:rgba(22,13,11,.92);z-index:21}
+header strong{color:var(--gold-light);font-size:18px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.dark-btn{background:var(--green)!important;color:#fff!important;border-color:#2e7d32!important}
+main{max-width:850px;margin:25px auto;padding:15px}
+#gate{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse at center,#2e1a0f,#110805);display:flex;align-items:center;justify-content:center;perspective:1600px;overflow:hidden;cursor:pointer;transition:opacity 1s,visibility 1s}
+#gate.hide{opacity:0;visibility:hidden;pointer-events:none}
+.arch{position:absolute;inset:2% 3% 0;border:7px solid #9c702b;border-bottom:0;border-radius:48% 48% 0 0;box-shadow:inset 0 0 0 5px #f2d78d,0 0 35px rgba(224,189,118,.3);pointer-events:none;z-index:6}
+.door-wrapper{position:relative;width:92vw;max-width:450px;height:80vh;max-height:730px;display:flex;border:4px solid var(--gold);border-radius:20px;box-shadow:0 0 50px rgba(224,189,118,.35),inset 0 0 35px rgba(0,0,0,.85);background:#1a0d07;overflow:hidden}
+.door{width:50%;height:100%;background:repeating-linear-gradient(90deg,#3d2512,#80582c 12%,#4b3018 24%,#9a713a 40%,#422713 65%);box-shadow:inset 0 0 0 8px #c69c4b,inset 0 0 0 14px #4a2c16,inset 0 0 0 18px #e5c46f;position:relative;transition:transform 2.2s cubic-bezier(.25,1,.3,1)}
+.door.left{transform-origin:left center}.door.right{transform-origin:right center}
+#gate.open .door.left{transform:translateX(-104%)}#gate.open .door.right{transform:translateX(104%)}
+#gate.open .door-wrapper{border-color:transparent;box-shadow:none;background:transparent}
+#gate.open .arch{opacity:0;transition:opacity 1.2s}
+.frame{position:absolute;inset:26% 8% 8%;border:3px double #e8c879;background:linear-gradient(145deg,#79542c,#301b0d);box-shadow:inset 0 0 0 6px #c49a43;text-align:center;color:#f8d98c;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.frame .symbol{font-size:clamp(35px,8vw,65px)}.frame .pattern{font-size:20px;line-height:1.6}
+.handle{position:absolute;top:52%;width:17px;height:48px;background:linear-gradient(180deg,#ffe28a,#9c6c22);border-radius:9px;transform:translateY(-50%)}
+.door.left .handle{right:12px}.door.right .handle{left:12px}
+.overlay{position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;text-align:center;pointer-events:none;transition:opacity .8s}
+#gate.open .overlay{opacity:0}
+.door-bismillah{font-family:'Amiri',serif;font-size:clamp(24px,5.5vw,34px);color:var(--gold-light);margin-bottom:10px;text-shadow:0 2px 8px #000}
+.door-title{font-size:clamp(22px,5vw,30px);font-weight:700;color:var(--gold);margin-bottom:10px;text-shadow:0 2px 8px #000}
+.door-sub{font-size:15px;color:#f7e6ca;margin-bottom:26px;max-width:85%;text-shadow:0 2px 8px #000}
+.door-open-btn{pointer-events:auto;padding:12px 30px;font-size:17px;color:#1a0d07;animation:pulseBtn 2s infinite}
+@keyframes pulseBtn{50%{transform:scale(1.05)}}
+.card{background:var(--cream);border:3px double var(--gold);outline:1px solid #d2b567;outline-offset:-8px;border-radius:18px;padding:clamp(20px,5vw,42px);text-align:center;color:var(--ink);box-shadow:0 15px 45px rgba(0,0,0,.45)}
+.bismillah{font-family:'Amiri',serif;font-size:34px;font-weight:700;color:var(--green)}
+.verse{margin:6px 0 16px;line-height:1.8;color:#66583e}
+.ornament{color:var(--gold);letter-spacing:6px;margin:14px 0}
+.guest,.person,.event{background:#fffdf7;border:1px solid #e5d19a;border-radius:12px;padding:14px;margin:14px 0}
+.guest{color:var(--green);font-weight:700}
+.couple{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:20px 0}
+.person h2{color:var(--green);margin:6px 0;font-size:clamp(20px,4vw,26px)}
+.role{background:var(--green);color:#fff;border-radius:15px;padding:3px 14px;font-size:13px}
+.parent{font-size:14px;color:#6b5c43}
+.amp{font-family:'Amiri',serif;font-size:32px;color:var(--gold);font-weight:700}
+.title{color:var(--green);font-weight:700;font-size:21px;margin-top:24px}
+.event{line-height:1.9}
+.event a{display:inline-block;margin-top:6px;color:#194b3b;font-weight:700;text-decoration:underline}
+.dua{background:#f6edda;padding:18px;border-radius:12px;line-height:1.9;margin-top:20px}
+.arabic-dua{font-family:'Amiri',serif;font-size:22px;color:#79552c;margin-bottom:6px;font-weight:700}
+.countdown{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+.unit{background:var(--green);color:#fff;padding:10px;border-radius:10px;min-width:68px}
+.unit b{display:block;font-size:22px}
+.cd-note{background:var(--green);color:#fff;padding:10px 20px;border-radius:10px;font-weight:700}
+.audio-panel{margin:18px auto 0;padding:16px;background:#f6edda;border:1px solid #d9bf7d;border-radius:12px}
+.audio-panel h3{margin:0 0 8px;color:var(--green)}
+.audio-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.status{font-size:14px;min-height:1.4em;color:#5b4a2c}
+.editor{display:none;background:#fffaf0;padding:22px;border:2px solid var(--gold);border-radius:14px;margin:25px 0;color:var(--ink)}
+.editor.show{display:block}
+.field{margin-bottom:12px;text-align:left}
+.field label{display:block;font-weight:700;margin-bottom:4px}
+.field input,.field textarea{width:100%;padding:10px;border:1px solid #c9ad6c;border-radius:7px;background:#fff;color:#222}
+.field textarea{min-height:65px}
+.small{font-size:13px;color:#6d6049;line-height:1.6}
+#effects{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:100000}
+.petal{position:absolute;top:-25px;width:14px;height:20px;border-radius:80% 10% 80% 10%;animation:fall 6s linear forwards}
+@keyframes fall{to{transform:translate(var(--drift),110vh) rotate(680deg);opacity:.15}}
+.bird{position:absolute;top:48%;font-size:34px;animation:fly 3.5s forwards cubic-bezier(.2,.8,.4,1)}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(20deg);opacity:0}}
+.toast{position:fixed;left:50%;bottom:calc(25px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--green);color:#fff;padding:11px 22px;border-radius:30px;font-size:14px;opacity:0;visibility:hidden;transition:.3s;z-index:100003;max-width:90vw;text-align:center}
+.toast.show{opacity:1;visibility:visible}
+footer{text-align:center;padding:25px;font-size:14px;color:#e5cfad}
+#editToggle,#adminLogout{display:none}
+body.admin-mode #editToggle,body.admin-mode #adminLogout{display:inline-block}
+body.guest-mode .admin-entry{display:none!important}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:16px;z-index:100002}
+.modal.show{display:flex}
+.modal-box{background:#fffaf0;border:3px double var(--gold);border-radius:14px;padding:22px;width:100%;max-width:340px;text-align:center;color:var(--ink)}
+.modal-box input{width:100%;margin:8px 0;padding:9px;border:1px solid #c9ad6c;border-radius:6px}
+@media(max-width:600px){.couple{grid-template-columns:1fr;gap:8px}.amp{line-height:.8}header{justify-content:center}.actions{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.door-open-btn{animation:none}.petal,.bird{animation-duration:.01s}}
+</style>
+</head>
+<body>
+<header>
+  <strong id="titleTap">✦ ROYAL ISLAMIC WEDDING</strong>
+  <div class="actions">
+    <button type="button" id="voiceTop">🔊 আমন্ত্রণ শুনুন</button>
+    <button type="button" id="ghazalTop" class="dark-btn">▶ গজল</button>
+    <button type="button" id="replay">↻ গেট</button>
+    <button type="button" id="shareTop">📤 শেয়ার</button>
+    <button type="button" id="editToggle">⚙ সম্পাদনা</button>
+    <button type="button" id="adminLogout">🚪 লগআউট</button>
+  </div>
+</header>
+
+<div id="gate" role="button" tabindex="0" aria-label="বিয়ের গেট খুলুন">
+  <div class="arch"></div>
+  <div class="door-wrapper">
+    <div class="door left"><div class="frame"><div class="symbol">۞</div><div class="pattern">❖ ✦ ❖<br>✧ ❖ ✧<br>❖ ✦ ❖</div></div><div class="handle"></div></div>
+    <div class="door right"><div class="frame"><div class="symbol">۞</div><div class="pattern">❖ ✦ ❖<br>✧ ❖ ✧<br>❖ ✦ ❖</div></div><div class="handle"></div></div>
+  </div>
+  <div class="overlay">
+    <div class="door-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="door-title">Royal Islamic Wedding</div>
+    <div class="door-sub">একটি সুন্দর নতুন জীবনের সূচনায় আপনাকে আন্তরিক স্বাগতম</div>
+    <button type="button" class="door-open-btn" id="openDoorBtn">দরজা খুলুন ✨</button>
+  </div>
+</div>
+<div id="effects"></div>
+<script>
+/* স্বাধীন গেট স্ক্রিপ্ট: মূল স্ক্রিপ্টে ত্রুটি হলেও গেট খুলবে */
+(function(){
+  var g=document.getElementById('gate'); if(!g) return;
+  function openGate(e){
+    if(e&&e.preventDefault) e.preventDefault();
+    if(g.dataset.done==='1') return;
+    g.dataset.done='1';
+    g.classList.add('open');
+    try{document.dispatchEvent(new Event('gateopen'));}catch(_){}
+    setTimeout(function(){g.classList.add('hide');},1900);
+    setTimeout(function(){g.style.display='none';},3000);
+  }
+  g.addEventListener('click',openGate);
+  g.addEventListener('keydown',function(e){ if(e.target===g&&(e.key==='Enter'||e.key===' ')) openGate(e); });
+  var b=document.getElementById('openDoorBtn');
+  if(b) b.addEventListener('click',function(e){ e.stopPropagation(); openGate(e); });
+})();
+</script>
+
+<main>
+  <section class="editor" id="editor">
+    <h2>কার্ড সম্পাদনা ও মিডিয়া সেটিংস</h2>
+    <div class="field"><label for="groom">বরের নাম</label><input id="groom"></div>
+    <div class="field"><label for="gfather">বরের পিতার নাম</label><input id="gfather"></div>
+    <div class="field"><label for="bride">কনের নাম</label><input id="bride"></div>
+    <div class="field"><label for="bfather">কনের পিতার নাম</label><input id="bfather"></div>
+    <div class="field"><label for="guest">অতিথির সম্বোধন</label><textarea id="guest"></textarea></div>
+    <div class="field"><label for="date">তারিখ ও সময় (লেখা)</label><input id="date"></div>
+    <div class="field"><label for="venue">অনুষ্ঠানের স্থান</label><textarea id="venue"></textarea></div>
+    <div class="field"><label for="map">Google Maps URL (ঐচ্ছিক, https)</label><input id="map" placeholder="https://maps.google.com/..."></div>
+    <div class="field"><label for="event">কাউন্টডাউন তারিখ ও সময়</label><input id="event" type="datetime-local"></div>
+    <div class="field"><label for="message">বিশেষ বার্তা</label><textarea id="message"></textarea></div>
+    <hr style="border:0;border-top:1px solid #d9bf7d;margin:15px 0">
+    <div class="field"><label for="voice">ভয়েসের সরাসরি HTTPS URL (ফাঁকা থাকলে ফোনের বাংলা ভয়েস পড়বে)</label><input id="voice" placeholder="https://example.com/voice.mp3"></div>
+    <div class="field"><label for="music">গজলের সরাসরি HTTPS URL</label><input id="music" placeholder="https://example.com/ghazal.mp3"></div>
+    <div class="field"><label for="musicFile">ডিভাইস থেকে অডিও (শুধু আপনার ফোনে পরীক্ষা)</label><input id="musicFile" type="file" accept="audio/*"></div>
+    <div class="field"><label for="bg">ব্যাকগ্রাউন্ড ছবির HTTPS URL</label><input id="bg" placeholder="https://example.com/photo.jpg"></div>
+    <div class="field"><label for="bgFile">ডিভাইস থেকে ছবি (শুধু আপনার ফোনে পরীক্ষা)</label><input id="bgFile" type="file" accept="image/*"></div>
+    <p class="small">ডিভাইস থেকে বাছাই করা ফাইল অন্যদের কাছে যাবে না। শেয়ারের জন্য সরাসরি HTTPS লিংক দিন।</p>
+    <div class="audio-controls">
+      <button type="button" id="save" class="dark-btn">সংরক্ষণ করুন</button>
+      <button type="button" id="testMusic">▶ গজল পরীক্ষা</button>
+      <button type="button" id="stopMusic">⏸ গজল বন্ধ</button>
+      <button type="button" id="testFlowers">🌸 ফুল ঝরান</button>
+      <button type="button" id="changePw">🔑 পাসওয়ার্ড বদলান</button>
+      <button type="button" id="closeEditor">বন্ধ করুন</button>
+    </div>
+    <p id="status" class="status"></p>
+  </section>
+
+  <section class="card">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="ornament">❖ ✦ ❖</div>
+    <p class="verse">“তিনি তোমাদের মধ্যে পারস্পরিক ভালোবাসা ও দয়া সৃষ্টি করেছেন।”</p>
+    <div class="guest" id="vguest"></div>
+    <div class="title">শুভ বিবাহ</div>
+    <div class="couple">
+      <div class="person"><span class="role">বর</span><h2 id="vgroom"></h2><div id="vgfather" class="parent"></div></div>
+      <div class="amp">&amp;</div>
+      <div class="person"><span class="role">কনে</span><h2 id="vbride"></h2><div id="vbfather" class="parent"></div></div>
+    </div>
+    <div class="title">অনুষ্ঠান ও সময়সূচি</div>
+    <div class="event">
+      <div id="vdate"></div>
+      <div id="vvenue"></div>
+      <div id="mapWrap" hidden><a id="vmap" target="_blank" rel="noopener noreferrer">📍 Google Maps-এ অবস্থান দেখুন</a></div>
+    </div>
+    <div class="title">বিবাহের বাকি সময়</div>
+    <div class="countdown" id="countdown"></div>
+    <div id="messageWrap" class="dua" hidden><b>বিশেষ বার্তা</b><div id="vmessage"></div></div>
+    <div class="dua">
+      <div class="arabic-dua">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+      আল্লাহ নবদম্পতির জীবনে বরকত দান করুন এবং কল্যাণের সঙ্গে একত্রিত রাখুন। আমিন।
+    </div>
+    <div class="audio-panel"><h3>🎙️ কণ্ঠে আমন্ত্রণ</h3>
+      <div class="audio-controls"><button type="button" id="voicePlay">🔊 আমন্ত্রণ শুনুন</button><button type="button" id="voiceStop">■ বন্ধ করুন</button></div>
+      <div class="status" id="voiceStatus"></div></div>
+    <div class="audio-panel"><h3>🎵 গজল শুনুন</h3>
+      <div class="audio-controls"><button type="button" id="play" class="dark-btn">▶ গজল চালু করুন</button><button type="button" id="pause">⏸ গজল বন্ধ</button><button type="button" id="flowers">🌸 ফুল ঝরান</button></div>
+      <div class="status" id="ghazalStatus"></div></div>
+    <div class="audio-panel"><h3>📤 আত্মীয়-স্বজনদের পাঠান</h3>
+      <div class="audio-controls"><button type="button" id="shareCard" class="dark-btn">📤 আমন্ত্রণ শেয়ার করুন</button></div></div>
+  </section>
+</main>
+
+<footer>
+  আল্লাহ নবদম্পতির জীবনে বরকত দান করুন। আমিন।
+  <div class="admin-entry" style="margin-top:10px"><button type="button" id="adminEntry" style="background:none;border:none;color:#e0bd76;text-decoration:underline">🔒 অ্যাডমিন মোড</button></div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <h3 id="adminTitle">অ্যাডমিন প্রবেশ</h3>
+    <p class="small" id="adminHint"></p>
+    <input type="password" id="adminPass" placeholder="পাসওয়ার্ড" autocomplete="off">
+    <input type="password" id="adminPass2" placeholder="পাসওয়ার্ড আবার লিখুন" autocomplete="off" hidden>
+    <div id="adminMsg" style="color:#b71c1c;font-size:13px;min-height:1.3em"></div>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+      <button type="button" id="adminOk" class="dark-btn">নিশ্চিত করুন</button>
+      <button type="button" id="adminCancel">বাতিল</button>
+    </div>
+  </div>
+</div>
+
+<audio id="audio" loop preload="none"></audio>
+<audio id="voiceAudio" preload="none"></audio>
+
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id);
+const KEYS = ['groom','gfather','bride','bfather','guest','date','venue','map','message','voice','music','bg','event'];
+const DEF = {groom:'ইমদাদুল হাসান জায়েদ',gfather:'হাফেজ আলী আহমাদ',bride:'তাসফিয়া জাহান',bfather:'মাওলানা আবু ইউসুফ সাহেব',
+  guest:'সম্মানিত অতিথি, আপনাকে আমাদের শুভ বিবাহ অনুষ্ঠানে সাদর আমন্ত্রণ।',date:'তারিখ ও সময় সম্পাদনা করে লিখুন',
+  venue:'মাওলানা আবু ইউসুফ সাহেবের বাড়ি',map:'',message:'আপনাদের উপস্থিতি আমাদের আনন্দকে পূর্ণতা দেবে। নবদম্পতির জন্য দোয়া করবেন।',
+  voice:'',music:'',bg:'',event:''};
+const S_KEY='rw_data_v4', PW_KEY='rw_pw_v4', SES_KEY='rw_admin_v4';
+const store = {
+  get:k=>{try{return localStorage.getItem(k)}catch(_){return null}},
+  set:(k,v)=>{try{localStorage.setItem(k,v);return true}catch(_){return false}}
+};
+const sess = {
+  get:k=>{try{return sessionStorage.getItem(k)}catch(_){return null}},
+  set:(k,v)=>{try{sessionStorage.setItem(k,v)}catch(_){}},
+  del:k=>{try{sessionStorage.removeItem(k)}catch(_){}}
+};
+const https = u => /^https:\/\//i.test((u||'').trim());
+const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+const dec = s => JSON.parse(decodeURIComponent(escape(atob(s))));
+const inviteHash = () => { const m = (location.hash||'').match(/(?:^#|&)invite=([^&]+)/); return m ? m[1] : null; };
+
+let data = {...DEF}, localAudio='', localImg='', timer=null, adminMode='login';
+let admin = sess.get(SES_KEY)==='1';
+const isGuest = () => !!inviteHash();
+const isOwner = () => admin && !isGuest();
+
+function load(){
+  const h = inviteHash();
+  try{
+    if(h){ data = {...DEF, ...dec(h)}; return; }
+    const s = store.get(S_KEY);
+    if(s) data = {...DEF, ...JSON.parse(s)};
+  }catch(_){ data = {...DEF}; }
+}
+function modes(){
+  document.body.classList.toggle('admin-mode', isOwner());
+  document.body.classList.toggle('guest-mode', isGuest());
+}
+let toastT;
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2800); }
+function say(m){ $('status').textContent=m; toast(m); }
+
+/* ---------- Render ---------- */
+function render(){
+  $('vguest').textContent = data.guest;
+  $('vgroom').textContent = data.groom;
+  $('vbride').textContent = data.bride;
+  $('vgfather').textContent = 'পিতা: '+data.gfather;
+  $('vbfather').textContent = 'পিতা: '+data.bfather;
+  $('vdate').textContent = 'তারিখ: '+data.date;
+  $('vvenue').textContent = 'ভেন্যু: '+data.venue;
+  const ok = https(data.map);
+  $('mapWrap').hidden = !ok;
+  if(ok) $('vmap').href = data.map.trim();
+  $('messageWrap').hidden = !data.message.trim();
+  $('vmessage').textContent = data.message;
+  const bg = localImg || (https(data.bg) ? data.bg.trim() : '');
+  if(bg){
+    const safe = bg.replace(/["'()\\\s]/g, encodeURIComponent);
+    document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),url("${safe}")`;
+    document.body.style.backgroundAttachment='fixed';
+  } else { document.body.style.backgroundImage=''; document.body.style.backgroundAttachment=''; }
+  startCountdown();
+}
+
+/* ---------- Countdown ---------- */
+const bn = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+function startCountdown(){
+  clearInterval(timer);
+  const box = $('countdown');
+  const target = data.event ? new Date(data.event).getTime() : NaN;
+  if(isNaN(target)){ box.innerHTML=''; const d=document.createElement('div'); d.className='cd-note'; d.textContent='বিয়ের তারিখ শীঘ্রই জানানো হবে'; box.appendChild(d); return; }
+  box.innerHTML = ['days:দিন','hours:ঘণ্টা','minutes:মিনিট','seconds:সেকেন্ড'].map(x=>{const[i,l]=x.split(':');return `<div class="unit"><b id="cd_${i}">--</b>${l}</div>`}).join('');
+  const tick = () => {
+    const diff = target - Date.now();
+    if(diff <= 0){ clearInterval(timer); box.innerHTML=''; const d=document.createElement('div'); d.className='cd-note'; d.textContent='🎉 শুভ বিবাহ অনুষ্ঠিত হচ্ছে / হয়েছে — আলহামদুলিল্লাহ'; box.appendChild(d); return; }
+    const s = Math.floor(diff/1000);
+    $('cd_days').textContent = bn(Math.floor(s/86400));
+    $('cd_hours').textContent = bn(Math.floor(s%86400/3600));
+    $('cd_minutes').textContent = bn(Math.floor(s%3600/60));
+    $('cd_seconds').textContent = bn(s%60);
+  };
+  tick(); timer = setInterval(tick,1000);
+}
+
+/* ---------- Effects ---------- */
+function petals(n=35){
+  const fx=$('effects'), cols=['#f0a6b6','#e8c66b','#fff0bd','#e0bd76'];
+  for(let i=0;i<n;i++) setTimeout(()=>{
+    const p=document.createElement('i'); p.className='petal';
+    p.style.left=Math.random()*100+'vw'; p.style.background=cols[i%cols.length];
+    p.style.setProperty('--drift',((Math.random()-.5)*300)+'px');
+    p.style.animationDuration=(4+Math.random()*3)+'s';
+    fx.appendChild(p); setTimeout(()=>p.remove(),7500);
+  }, i*90);
+}
+function birds(n=6){
+  const fx=$('effects');
+  for(let i=0;i<n;i++) setTimeout(()=>{
+    const b=document.createElement('span'); b.className='bird'; b.textContent='🕊️';
+    b.style.left=(20+Math.random()*60)+'vw';
+    b.style.setProperty('--x',((Math.random()-.5)*400)+'px');
+    b.style.setProperty('--y',(-(250+Math.random()*350))+'px');
+    fx.appendChild(b); setTimeout(()=>b.remove(),3700);
+  }, i*250);
+}
+
+/* ---------- Audio ---------- */
+const music=$('audio'), voiceEl=$('voiceAudio');
+function musicSrc(){ return localAudio || (https(data.music)?data.music.trim():''); }
+function playMusic(){
+  const src=musicSrc();
+  if(!src){ $('ghazalStatus').textContent='গজলের লিংক দেওয়া নেই।'; toast('গজলের লিংক দেওয়া নেই'); return; }
+  if(music.getAttribute('src')!==src) music.src=src;
+  music.play().then(()=>{ $('ghazalStatus').textContent='গজল চলছে…'; })
+    .catch(()=>{ $('ghazalStatus').textContent='গজল চালানো যায়নি। লিংকটি সরাসরি অডিও ফাইলের কি না দেখুন।'; });
+}
+function stopMusic(){ music.pause(); $('ghazalStatus').textContent='গজল বন্ধ।'; }
+function inviteText(){ return `${data.guest} বর ${data.groom}, কনে ${data.bride}। ${data.date}। স্থান: ${data.venue}। ${data.message}`; }
+function playVoice(){
+  stopVoice();
+  if(https(data.voice)){
+    voiceEl.src=data.voice.trim();
+    voiceEl.play().then(()=>{$('voiceStatus').textContent='আমন্ত্রণ চলছে…'}).catch(()=>{$('voiceStatus').textContent='ভয়েস ফাইল চালানো যায়নি।'});
+    return;
+  }
+  if(!('speechSynthesis' in window)){ $('voiceStatus').textContent='এই ব্রাউজারে ভয়েস সাপোর্ট নেই।'; return; }
+  const u=new SpeechSynthesisUtterance(inviteText()); u.lang='bn-BD'; u.rate=.9;
+  const v=speechSynthesis.getVoices().find(x=>/^bn/i.test(x.lang)); if(v) u.voice=v;
+  u.onend=()=>{$('voiceStatus').textContent=''};
+  speechSynthesis.speak(u);
+  $('voiceStatus').textContent = v ? 'আমন্ত্রণ পড়া হচ্ছে…' : 'আপনার ডিভাইসে বাংলা ভয়েস নেই; ডিফল্ট ভয়েসে পড়া হচ্ছে।';
+}
+function stopVoice(){ voiceEl.pause(); try{speechSynthesis.cancel()}catch(_){} $('voiceStatus').textContent=''; }
+
+/* ---------- Gate ---------- */
+const gate=$('gate');
+document.addEventListener('gateopen',()=>{ try{petals();birds();}catch(_){} try{ if(musicSrc()) playMusic(); }catch(_){} });
+$('replay').addEventListener('click',()=>{ gate.style.display=''; gate.classList.remove('hide'); void gate.offsetWidth; gate.classList.remove('open'); gate.dataset.done=''; gate.focus(); });
+
+/* ---------- Share ---------- */
+function shareLink(){
+  const d={}; KEYS.forEach(k=>d[k]=data[k]);
+  return location.href.split('#')[0]+'#invite='+enc(d);
+}
+async function share(){
+  const url=shareLink(), title=`${data.groom} ও ${data.bride} — শুভ বিবাহের আমন্ত্রণ`;
+  try{
+    if(navigator.share){ await navigator.share({title,text:data.guest,url}); return; }
+  }catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(url); toast('আমন্ত্রণ লিংক কপি হয়েছে'); }
+  catch(_){ prompt('লিংকটি কপি করুন:',url); }
+}
+
+/* ---------- Admin ---------- */
+function hp(s){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677);}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(16);}
+const DEF_PW='74e79be852bf9';
+const curPw=()=>store.get(PW_KEY)||DEF_PW;
+function openModal(mode){
+  adminMode=mode; const ch=mode==='change';
+  $('adminTitle').textContent=ch?'নতুন পাসওয়ার্ড দিন':'অ্যাডমিন প্রবেশ';
+  $('adminHint').textContent=ch?'কমপক্ষে ৬ অক্ষর দিন।':'';
+  $('adminPass2').hidden=!ch; $('adminPass').value=''; $('adminPass2').value=''; $('adminMsg').textContent='';
+  $('adminModal').classList.add('show'); setTimeout(()=>$('adminPass').focus(),50);
+}
+function closeModal(){ $('adminModal').classList.remove('show'); }
+function enterAdmin(){
+  admin=true; sess.set(SES_KEY,'1'); closeModal(); modes(); fillEditor();
+  $('editor').classList.add('show');
+  try{$('editor').scrollIntoView({behavior:'smooth'});}catch(_){}
+  toast('অ্যাডমিন মোড চালু হয়েছে');
+}
+function tryAdmin(){
+  const msg=$('adminMsg');
+  try{
+    const p=$('adminPass').value;
+    if(adminMode==='login'){
+      if(hp('royal|'+p)!==curPw()){ msg.textContent='পাসওয়ার্ড ভুল।'; return; }
+      if(isGuest()){ history.replaceState(null,'',location.href.split('#')[0]); load(); render(); }
+      enterAdmin(); return;
+    }
+    if(p.length<6){ msg.textContent='কমপক্ষে ৬ অক্ষর দিন।'; return; }
+    if(p!==$('adminPass2').value){ msg.textContent='দুই পাসওয়ার্ড মেলেনি।'; return; }
+    store.set(PW_KEY,hp('royal|'+p)); closeModal(); toast('নতুন পাসওয়ার্ড সংরক্ষিত হয়েছে');
+  }catch(e){ msg.textContent='ত্রুটি: '+e.message; }
+}
+$('adminEntry').addEventListener('click',()=>openModal('login'));
+$('adminCancel').addEventListener('click',closeModal);
+$('adminOk').addEventListener('click',tryAdmin);
+$('adminPass').addEventListener('keydown',e=>{ if(e.key==='Enter') tryAdmin(); });
+$('adminPass2').addEventListener('keydown',e=>{ if(e.key==='Enter') tryAdmin(); });
+$('adminLogout').addEventListener('click',()=>{ admin=false; sess.del(SES_KEY); $('editor').classList.remove('show'); modes(); toast('লগআউট হয়েছে'); });
+$('changePw').addEventListener('click',()=>{ if(isOwner()) openModal('change'); });
+/* অতিথি লিংকে লক বাটন লুকানো থাকে: উপরের শিরোনামে ৫ বার ট্যাপ করলে লগইন খুলবে, অথবা লিংকের শেষে #admin দিন */
+let taps=0,tapT;
+$('titleTap').addEventListener('click',()=>{ taps++; clearTimeout(tapT); tapT=setTimeout(()=>{taps=0},1500); if(taps>=5){ taps=0; openModal('login'); } });
+if(/(?:^#|&)admin\b/.test(location.hash)) setTimeout(()=>openModal('login'),300);
+
+/* ---------- Editor ---------- */
+function fillEditor(){ KEYS.forEach(k=>{ $(k).value=data[k]||''; }); }
+$('editToggle').addEventListener('click',()=>{ if(!isOwner()) return; fillEditor(); $('editor').classList.toggle('show'); $('editor').scrollIntoView({behavior:'smooth'}); });
+$('closeEditor').addEventListener('click',()=>$('editor').classList.remove('show'));
+$('save').addEventListener('click',()=>{
+  if(!isOwner()) return;
+  const n={...data}; KEYS.forEach(k=>n[k]=$(k).value.trim());
+  for(const k of ['map','voice','music','bg']) if(n[k]&&!https(n[k])){ say('লিংক অবশ্যই https:// দিয়ে শুরু হতে হবে ('+k+')'); return; }
+  data=n;
+  const ok=store.set(S_KEY,JSON.stringify(data));
+  if(location.hash) history.replaceState(null,'',location.href.split('#')[0]);
+  render(); say(ok?'পরিবর্তন সংরক্ষিত হয়েছে':'সংরক্ষণ করা যায়নি, তবে এই সেশনে দেখানো হচ্ছে');
+});
+$('musicFile').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  if(localAudio) URL.revokeObjectURL(localAudio);
+  localAudio=URL.createObjectURL(f); say('অডিও লোড হয়েছে (শুধু আপনার ডিভাইসে)');
+});
+$('bgFile').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  if(localImg) URL.revokeObjectURL(localImg);
+  localImg=URL.createObjectURL(f); render(); say('ছবি লোড হয়েছে (শুধু আপনার ডিভাইসে)');
+});
+$('testMusic').addEventListener('click',playMusic);
+$('stopMusic').addEventListener('click',stopMusic);
+$('testFlowers').addEventListener('click',()=>{petals();birds();});
+
+/* ---------- Public buttons ---------- */
+$('voiceTop').addEventListener('click',playVoice);
+$('voicePlay').addEventListener('click',playVoice);
+$('voiceStop').addEventListener('click',stopVoice);
+$('ghazalTop').addEventListener('click',()=>music.paused?playMusic():stopMusic());
+$('play').addEventListener('click',playMusic);
+$('pause').addEventListener('click',stopMusic);
+$('flowers').addEventListener('click',()=>{petals();birds();});
+$('shareTop').addEventListener('click',share);
+$('shareCard').addEventListener('click',share);
+window.addEventListener('hashchange',()=>{ load(); modes(); render(); });
+if('speechSynthesis' in window) speechSynthesis.onvoiceschanged=()=>{};
+
+try{ load(); modes(); render(); }catch(err){ console.error(err); }
+})();
+</script>
+</body>
+</html>
